@@ -52,20 +52,20 @@ class Coche(Vehiculo):
             self.esta_encendido = True
 
 class Examen4(App):
-    self.lista_v = []
-    self.lista_v.append(Camion("GHA-45-43", "NISSAN", "BLANCO"))
-    self.lista_v.append(Camion("HHP-22-12", "MERCEDES BENZ", "NEGRO"))
-    self.lista_v.append(Coche("OJK-88-54", "CHEVROLETE", "ROJO"))
-    self.lista_v.append(Coche("OKJ-12-36", "FORD", "AZUL"))
+    lista_v = []
+    lista_v.append(Camion("GHA-45-43", "NISSAN", "BLANCO"))
+    lista_v.append(Camion("HHP-22-12", "MERCEDES BENZ", "NEGRO"))
+    sta_v.append(Coche("OJK-88-54", "CHEVROLETE", "ROJO"))
+    lista_v.append(Coche("OKJ-12-36", "FORD", "AZUL"))
     def build(self):
         
         label = Label(text="Vehiculos")
 
-        infolabel1= Label(lista_v[0].placa)
+        infolabel1= Label(text=self.lista_v[0].placa)
         boton1 = Button(text="Mostrar")
         boton1.bind(on_press=partial(self.mostrarInfo, 0))
 
-        infolabel2= Label(lista_v[1].placa)
+        infolabel2= Label(text=self.lista_v[1].placa)
         boton2 = Button(text="Mostrar")
         boton2.bind(on_press=partial(self.mostrarInfo, 1))
 
