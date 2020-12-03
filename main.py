@@ -1,10 +1,14 @@
 import abc
 from kivy.app import App
-from kivy.lang import Builder
-from kivy.properties import StringProperty
+from kivy.core.window import Window
+from kivy.graphics import Color, Ellipse
 from kivy.uix.boxlayout import BoxLayout
-from kivy.uix.recycleview import RecycleView
-from kivy.uix.popup import Popup
+from kivy.uix.floatlayout import FloatLayout
+from kivy.uix.button import Button
+from kivy.uix.label import Label
+from kivy.uix.stencilview import StencilView
+from random import random as r
+from functools import partial
 
 class Vehiculo(abc.ABC):
     def __init__(self, placa, marca, color):
@@ -47,69 +51,38 @@ class Coche(Vehiculo):
         else:
             self.esta_encendido = True
 
-Builder.load_string('''
-#:kivy 1.10.0
-#: import Popup kivy.uix.popup
-
-<MessageBox>:
-    title: 'Popup Message Box'
-    size_hint: None, None
-    size: 400, 400
-
-    BoxLayout:
-        orientation: 'vertical'
-        Label:
-            text: root.message
-        Button:
-            size_hint: 1, 0.2
-            text: 'OK'
-            on_press: root.dismiss()
-
-<RecycleViewRow>:
-    orientation: 'horizontal'
-    Label:
-        text: root.text
-    Button:
-        text: 'Mostrar'
-        on_press: app.root.message_box(root.text)
-
-<MainScreen>:
-    viewclass: 'RecycleViewRow'
-    RecycleBoxLayout:
-        default_size: None, dp(56)
-        default_size_hint: 1, None
-        size_hint_y: None
-        height: self.minimum_height
-        orientation: 'vertical'
-                    ''')
-
-class MessageBox(Popup):
-    message = StringProperty()
-
-class RecycleViewRow(BoxLayout):
-    text = StringProperty()
-
-class MainScreen(RecycleView):
-    lista_v=[]
-    lista_v.append(Camion("426-EE-9", "Honda", "Blanco"))
-    lista_v.append(Camion("EMN-71-71", "Mercedes benz", "Negro"))
-    lista_v.append(Coche("HAW-162-A", "Nissan", "Rojo"))
-    lista_v.append(Coche("EF-16-199", "BMW", "Plateado"))
-    def init(self, kwargs):
-        super(MainScreen, self).init(kwargs)
-        self.data = [{'text': "Button " + str(x), 'id': str(x)} for x in len(lista_v)]
-
-    def message_box(self, message):
-        p = MessageBox()
-        p.message = messageg
-        p.open() 
-        print('test press: ', message)
-
-class TestApp(App):
-    title = "RecycleView Direct Test"
-
+class Examen4(App):
     def build(self):
-        return MainScreen()
+        self.lista_v = []
+        self.lista_v.append(Camion("GHA-45-43", "NISSAN", "BLANCO"))
+        self.lista_v.append(Camion("HHP-22-12", "MERCEDES BENZ", "NEGRO"))
+        self.lista_v.append(Coche("OJK-88-54", "CHEVROLETE", "ROJO"))
+        self.lista_v.append(Coche("OKJ-12-36", "FORD", "AZIL"))
+        label = Label(text="Vehiculos")
 
-if __name__ == "__main__":
-    TestApp().run()
+        infolabel1= Label(lista_v[0].placa)
+        boton1 = Button(text="Mostrar")
+        boton1.bind(on_press=partial(self.mostrarInfo, 0))
+
+        infolabel2= Label(lista_v[1].placa)
+        boton2 = Button(text="Mostrar")
+        boton2.bind(on_press=partial(self.mostrarInfo, 1))
+
+        layout = BoxLayout(size_hint=(1, None), height=50)
+        layout.add_widget(label)
+        layout1 = BoxLayout(size_hint=(1, None), height=50)
+        layout1.add_widget(infolabel1)
+        layout1.add_widget(boton1)
+
+        layout2= BoxLayout(size_hint=(1, None), height=50)
+        layout2.add_widget(infolabel2)
+        layout2.add_widget((boton2))
+
+        root = BoxLayout(orientation='vertical')
+        root.add_widget(layout)
+        root.add_widget(layout1)
+        root.add_widget(layout2)
+
+        return root
+    def mostrarInfo(self, index):
+        pass
