@@ -26,7 +26,7 @@ class Camion(Vehiculo):
         else:
             self.esta_encendido = True
 
-class Coche():
+class Coche(Vehiculo):
     esta_encendido=False
     def enciende(self):
         if self.esta_encendido:
