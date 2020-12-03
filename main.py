@@ -120,7 +120,7 @@ class Examen4(App):
     def funcionx(self, index, popup,*args):
         popup.dismiss()
         self.lista_v[index].prenderApagar()
-        popup_1(index)
+        self.popup_1(index)
         
 if __name__ == '__main__':
     Examen4().run()
