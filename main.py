@@ -1,14 +1,10 @@
 import abc
 from kivy.app import App
-from kivy.core.window import Window
-from kivy.graphics import Color, Ellipse
 from kivy.uix.boxlayout import BoxLayout
-from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.button import Button
 from kivy.uix.label import Label
-from kivy.uix.stencilview import StencilView
-from random import random as r
 from functools import partial
+from kivy.uix.popup import Popup
 
 class Vehiculo(abc.ABC):
     def __init__(self, placa, marca, color):
@@ -63,14 +59,23 @@ class Examen4(App):
 
         infolabel1= Label(text=self.lista_v[0].placa)
         boton1 = Button(text="Mostrar")
-        boton1.bind(on_press=partial(self.mostrarInfo, 0))
+        boton1.bind(on_press=partial(self.popup_1, 0))
 
         infolabel2= Label(text=self.lista_v[1].placa)
         boton2 = Button(text="Mostrar")
-        boton2.bind(on_press=partial(self.mostrarInfo, 1))
+        boton2.bind(on_press=partial(self.popup_1, 1))
+
+        infolabel3= Label(text=self.lista_v[2].placa)
+        boton3 = Button(text="Mostrar")
+        boton3.bind(on_press=partial(self.popup_1, 2))
+
+        infolabel4= Label(text=self.lista_v[3].placa)
+        boton4 = Button(text="Mostrar")
+        boton4.bind(on_press=partial(self.popup_1, 3))
 
         layout = BoxLayout(size_hint=(1, None), height=50)
         layout.add_widget(label)
+
         layout1 = BoxLayout(size_hint=(1, None), height=50)
         layout1.add_widget(infolabel1)
         layout1.add_widget(boton1)
@@ -79,14 +84,39 @@ class Examen4(App):
         layout2.add_widget(infolabel2)
         layout2.add_widget((boton2))
 
+        layout3 = BoxLayout(size_hint=(1, None), height=50)
+        layout3.add_widget(infolabel3)
+        layout3.add_widget(boton3)
+
+        layout4 = BoxLayout(size_hint=(1, None), height=50)
+        layout4.add_widget(infolabel4)
+        layout4.add_widget(boton4)
+
         root = BoxLayout(orientation='vertical')
         root.add_widget(layout)
         root.add_widget(layout1)
         root.add_widget(layout2)
 
         return root
-    def mostrarInfo(self, index):
-        pass
+    def popup_1(self, index):
+        box = BoxLayout(orientation = 'vertical', padding = (10))
+        box.add_widget(Label(text="Placa:\t"+self.lista_v[index].placa))
+        box.add_widget(Label(text="Marca:\t"+self.lista_v[index].marca))
+        box.add_widget(Label(text="Color:\t"+self.lista_v[index].color))
+        box.add_widget(Label(text=self.lista_v[index].enciende()))
+        
+        
+        box.add_widget(Label(text = "¿Encender el vehiculo? \n "))
+        popup = Popup(title='Información del vehiculo', title_size= (30), 
+                    title_align = 'center', content = box,
+                    size_hint=(None, None), size=(400, 400),
+                    auto_dismiss = True)
+        box.add_widget(Button(text = "Encender/Apagar",  on_press=partial(self.funcionx, index)))
+        box.add_widget(Button(text = "Cerrar",  on_press=popup.dismiss))
 
+        popup.open()
+    def funcionx(self, index):
+        self.lista_v[index].prenderApagar()
+        
 if __name__ == '__main__':
     Examen4().run()
