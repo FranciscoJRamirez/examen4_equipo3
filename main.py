@@ -97,11 +97,11 @@ class MainScreen(RecycleView):
     lista_v.append(Coche("EF-16-199", "BMW", "Plateado"))
     def init(self, kwargs):
         super(MainScreen, self).init(kwargs)
-        self.data = [{'text': "Button " + str(x.placa), 'id': str(x.index)} for x in (lista_v)]
+        self.data = [{'text': "Button " + str(x), 'id': str(x)} for x in len(lista_v)]
 
     def message_box(self, message):
         p = MessageBox()
-        p.message = message
+        p.message = messageg
         p.open() 
         print('test press: ', message)
 
@@ -111,5 +111,5 @@ class TestApp(App):
     def build(self):
         return MainScreen()
 
-if name == "main":
+if __name__ == "__main__":
     TestApp().run()
