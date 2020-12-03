@@ -51,14 +51,13 @@ class Examen4(App):
     lista_v = []
     lista_v.append(Camion("GHA-45-43", "NISSAN", "BLANCO"))
     lista_v.append(Camion("HHP-22-12", "MERCEDES BENZ", "NEGRO"))
-    sta_v.append(Coche("OJK-88-54", "CHEVROLETE", "ROJO"))
+    lista_v.append(Coche("OJK-88-54", "CHEVROLETE", "ROJO"))
     lista_v.append(Coche("OKJ-12-36", "FORD", "AZUL"))
     def build(self):
         
         label = Label(text="Vehiculos")
 
         infolabel1= Label(text=self.lista_v[0].placa)
-        boton1 = Button(text="Mostrar")
         boton1.bind(on_press=partial(self.popup_1, 0))
 
         infolabel2= Label(text=self.lista_v[1].placa)
@@ -96,9 +95,11 @@ class Examen4(App):
         root.add_widget(layout)
         root.add_widget(layout1)
         root.add_widget(layout2)
+        root.add_widget(layout3)
+        rott.add_widget(layout4)
 
         return root
-    def popup_1(self, index):
+    def popup_1(self, index, *args):
         box = BoxLayout(orientation = 'vertical', padding = (10))
         box.add_widget(Label(text="Placa:\t"+self.lista_v[index].placa))
         box.add_widget(Label(text="Marca:\t"+self.lista_v[index].marca))
@@ -115,7 +116,7 @@ class Examen4(App):
         box.add_widget(Button(text = "Cerrar",  on_press=popup.dismiss))
 
         popup.open()
-    def funcionx(self, index):
+    def funcionx(self, index, *args):
         self.lista_v[index].prenderApagar()
         
 if __name__ == '__main__':
