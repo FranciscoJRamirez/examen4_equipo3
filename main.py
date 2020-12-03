@@ -97,7 +97,7 @@ class Examen4(App):
         root.add_widget(layout1)
         root.add_widget(layout2)
         root.add_widget(layout3)
-        rott.add_widget(layout4)
+        root.add_widget(layout4)
 
         return root
     def popup_1(self, index, *args):
