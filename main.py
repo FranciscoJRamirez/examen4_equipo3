@@ -73,7 +73,7 @@ class Examen4(App):
         boton4 = Button(text="Mostrar")
         boton4.bind(on_press=partial(self.popup_1, 3))
 
-        layout = BoxLayout(size_hint=(1, .2), height=10)
+        layout = BoxLayout(size_hint=(1, .2), height=50)
         layout.add_widget(label)
 
         layout1 = BoxLayout(size_hint=(1, .2), height=50)
@@ -113,12 +113,14 @@ class Examen4(App):
                     title_align = 'center', content = box,
                     size_hint=(None, None), size=(400, 400),
                     auto_dismiss = True)
-        box.add_widget(Button(text = "Encender/Apagar",  on_press=partial(self.funcionx, index)))
+        box.add_widget(Button(text = "Encender/Apagar",  on_press=partial(self.funcionx, index, popup)))
         box.add_widget(Button(text = "Cerrar",  on_press=popup.dismiss))
 
         popup.open()
-    def funcionx(self, index, *args):
+    def funcionx(self, index, popup,*args):
+        popup.dismiss()
         self.lista_v[index].prenderApagar()
+        popup_1(index)
         
 if __name__ == '__main__':
     Examen4().run()
