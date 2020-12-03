@@ -87,3 +87,6 @@ class Examen4(App):
         return root
     def mostrarInfo(self, index):
         pass
+
+if __name__ == '__main__':
+    Examen4().run()
