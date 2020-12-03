@@ -24,9 +24,9 @@ class Camion(Vehiculo):
             return("Esta encendido")
         else:
             return self.apaga()
-    def apaga():
+    def apaga(self):
         return "Esta apagado"
-    def prenderApagar():
+    def prenderApagar(self):
         if self.esta_encendido:
             self.esta_encendido = False
         else:
@@ -39,9 +39,9 @@ class Coche(Vehiculo):
             return("Esta encendido")
         else:
             return self.apaga()
-    def apaga():
+    def apaga(self):
         return "Esta apagado"
-    def prenderApagar():
+    def prenderApagar(self):
         if self.esta_encendido:
             self.esta_encendido = False
         else:
@@ -58,6 +58,7 @@ class Examen4(App):
         label = Label(text="Vehiculos")
 
         infolabel1= Label(text=self.lista_v[0].placa)
+        boton1 = Button(text="Mostrar")
         boton1.bind(on_press=partial(self.popup_1, 0))
 
         infolabel2= Label(text=self.lista_v[1].placa)
@@ -101,9 +102,9 @@ class Examen4(App):
         return root
     def popup_1(self, index, *args):
         box = BoxLayout(orientation = 'vertical', padding = (10))
-        box.add_widget(Label(text="Placa:\t"+self.lista_v[index].placa))
-        box.add_widget(Label(text="Marca:\t"+self.lista_v[index].marca))
-        box.add_widget(Label(text="Color:\t"+self.lista_v[index].color))
+        box.add_widget(Label(text="Placa: "+self.lista_v[index].placa))
+        box.add_widget(Label(text="Marca}: "+self.lista_v[index].marca))
+        box.add_widget(Label(text="Color: "+self.lista_v[index].color))
         box.add_widget(Label(text=self.lista_v[index].enciende()))
         
         
