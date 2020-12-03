@@ -73,22 +73,22 @@ class Examen4(App):
         boton4 = Button(text="Mostrar")
         boton4.bind(on_press=partial(self.popup_1, 3))
 
-        layout = BoxLayout(size_hint=(1, None), height=50)
+        layout = BoxLayout(size_hint=(1, .2), height=10)
         layout.add_widget(label)
 
-        layout1 = BoxLayout(size_hint=(1, None), height=50)
+        layout1 = BoxLayout(size_hint=(1, .2), height=50)
         layout1.add_widget(infolabel1)
         layout1.add_widget(boton1)
 
-        layout2= BoxLayout(size_hint=(1, None), height=50)
+        layout2= BoxLayout(size_hint=(1, .2), height=50)
         layout2.add_widget(infolabel2)
         layout2.add_widget((boton2))
 
-        layout3 = BoxLayout(size_hint=(1, None), height=50)
+        layout3 = BoxLayout(size_hint=(1, .2), height=50)
         layout3.add_widget(infolabel3)
         layout3.add_widget(boton3)
 
-        layout4 = BoxLayout(size_hint=(1, None), height=50)
+        layout4 = BoxLayout(size_hint=(1, .2), height=50)
         layout4.add_widget(infolabel4)
         layout4.add_widget(boton4)
 
@@ -103,7 +103,7 @@ class Examen4(App):
     def popup_1(self, index, *args):
         box = BoxLayout(orientation = 'vertical', padding = (10))
         box.add_widget(Label(text="Placa: "+self.lista_v[index].placa))
-        box.add_widget(Label(text="Marca}: "+self.lista_v[index].marca))
+        box.add_widget(Label(text="Marca: "+self.lista_v[index].marca))
         box.add_widget(Label(text="Color: "+self.lista_v[index].color))
         box.add_widget(Label(text=self.lista_v[index].enciende()))
         
